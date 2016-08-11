@@ -1,0 +1,5 @@
+{	"slotsButton": "a.CMSListMenuLink[href*='slots']",
+	 "bingoButton": "a.CMSListMenuLink[href*='bingo']",
+	"casinoButton": "a.CMSListMenuLink[href*='casino']",
+	"pokerButton": "a.CMSListMenuLink[href*='poker']"
+}

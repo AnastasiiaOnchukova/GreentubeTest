@@ -1,0 +1,7 @@
+{
+	"similarGamesSection": "ul[class*='similar-games']",
+	"similarGamesAll": "ul[class*='similar-games'] li",
+	"similarGames3": "ul[class*='similar-games'] li:nth-child(3)",
+	"similarGames3Name": "ul[class*='similar-games'] li:nth-child(3) a[class*='_title']",
+	"similarGames3InfoButton": "ul[class*='similar-games'] li:nth-child(3) a[class*='btn--secondary']"
+}

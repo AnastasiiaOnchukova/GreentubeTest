@@ -1,0 +1,26 @@
+{
+  "name": "GreentubeTest",
+  "version": "1.0.0",
+  "description": "Greentube test",
+  "main": "wdio.conf.js",
+  "directories": {
+    "GreentubeTest": "GreentubeTest"
+  },
+  "dependencies": {
+    "gulp": "^3.9.1",
+    "gulp-jasmine": "^2.4.0",
+    "gulp-webdriver": "^2.0.2",
+    "jasmine": "^2.4.1",
+    "selenium-standalone": "^5.5.0",
+    "wdio-dot-reporter": "^0.0.6",
+    "wdio-jasmine-framework": "^0.2.5",
+    "wdio-selenium-standalone-service": "^0.0.5",
+    "webdriverio": "^4.2.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "wdio"
+  },
+  "author": "Anastasiia Onchukova",
+  "license": "ISC"
+}
