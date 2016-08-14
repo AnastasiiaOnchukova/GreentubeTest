@@ -1,7 +1,5 @@
-var assert = require("assert");
-var mainpage = require("./page-objects/main.page");
-var generalpage = require("./page-objects/general.page");
-var gamepage = require("./page-objects/game.page");
+var MainPage = require("./page-objects/mainpage.js");
+var GamePage = require("./page-objects/gamepage.js");
 var username = "50testtest";
 var password = "Greentube5";
 var expectedSlotTitle = "Slot"
@@ -9,92 +7,64 @@ var expectedBingoTitle = "Bingo";
 var expectedCasinoTitle = "Casino";
 var expectedPokerTitle = "Poker";
 var searchString = "Slot";
-var expectedElementsNumber = "8";
+var expectedGamesNumber = 8;
 var expectedLanguage = 'de';
-var baseUrl = "https://www.gametwist.com/en/";
-
 
 describe("Greentube", function () {
 
     beforeAll(function () {
-        browser.url(baseUrl)
-            .setValue(generalpage.usernameField, username)
-            .click(generalpage.passwordField)
-            .setValue(generalpage.passwordField, password)
-            .click(generalpage.loginButton)
-            .call(done);
-        //todo close popups
-    });
+        MainPage.open();
+        MainPage.windowMaximize();
+        MainPage.inputUsername(username);
+        MainPage.inputPassword(password);
+        MainPage.clickLogin();
+        var isPopupExists=MainPage.waitForExist();
+        if(existsPopup){MainPage.execute();}});
 
-    it('test navigation', function (done) {
-        browser
-            .timeouts('page load', 1000000)
-            .moveToObject(mainpage.slotsButton)
-            .click(mainpage.slotsButton);
-        var title = browser.getTitle();
+   it('test navigation', function () {
+        MainPage.clickSlotsButton();
+        var title = MainPage.getTitle();
         expect(title).toContain(expectedSlotTitle);
 
-        browser
-            .timeouts('page load', 1000000)
-            .moveToObject(mainpage.bingoButton)
-            .click(mainpage.bingoButton);
-        var title = browser.getTitle();
+        MainPage.clickBingoButton();
+        var title = MainPage.getTitle();
         expect(title).toContain(expectedBingoTitle);
 
-        browser.timeouts('page load', 1000000)
-            .click(mainpage.casinoButton);
-        var title = browser.getTitle();
+        MainPage.clickCasinoButton();
+        var title = MainPage.getTitle();
         expect(title).toContain(expectedCasinoTitle);
 
-        browser.timeouts('page load', 1000000)
-            .click(mainpage.pokerButton)
-        var title = browser.getTitle();
-        expect(title).toContain(expectedPokerTitle)
-            .call(done);
+        MainPage.clickPokerButton();
+        var title = MainPage.getTitle();
+        expect(title).toContain(expectedPokerTitle);
     });
 
-    it('test search', function (done) {
-        browser
-            .click(generalpage.searchField)
-            .setValue(generalpage.searchField, searchString)
-            .click(generalpage.searchButton)
-            .timeouts('page load', 1000000);
-        var element = browser.elements(gamepage.similarGamesAll).length;
-        expect(element).toBe(expectedElementsNumber);
+    it('test search', function () {
+        MainPage.inputSearch(searchString);
+        MainPage.clickSearchButton();
+        var isExist = GamePage.isSimilarGameSectionPresent();
+        expect(isExist).toBe(true);
 
-        var expectedSimilarGame3Title = browser.getText(gamepage.similarGames3Name);
-        browser
-            .moveToObject(gamepage.similarGames3)
-            .click(gamepage.similarGames3)
-            .click(gamepage.similarGame3InfoButton);
-        var title = browser.getTitle();
-        expect(title).toBe(expectedSimilarGame3Title)
-            .call(done);
+        var count = GamePage.countGamesSimilarSection();
+        expect(count).toBe(expectedGamesNumber);
+
+        var expectedSimilarGame3Title = GamePage.getSimilarGame3Name();
+        GamePage.clickSimilarGame3();
+        var title = GamePage.getCurrentGameName();
+        expect(title).toContain(expectedSimilarGame3Title);
     });
 
-    it('test language switch', function (done) {
-        browser
-            .windowHandleMaximize()
-            .moveToObject(generalpage.languageButton)
-            .click(generalpage.languageButtonArrow)
-            .moveToObject(generalpage.languageButtonGerman)
-            .click(generalpage.languageButtonGerman)
-            .timeouts('page load', 1000000);
-        var lang = browser
-            .getCssProperty(generalpage.languageGet, 'content');
 
-        expect(lang).toContain(expectedLanguage)
-            .call(done);
+    it('test language switch', function () {
+        MainPage.clickLanguageArrow();
+        MainPage.clickLanguageGerman();
+        var lang = MainPage.getCurrentLanguage();
+        expect(lang).toContain(expectedLanguage);
     });
 
-    afterAll(function (done) {
-        browser
-            .click(generalpage.logoutButtonArrow)
-            .moveToObject(generalpage.logoutButton)
-            .click(generalpage.logoutButton)
-            .timeouts('page load', 1000000)
-            .end(done);
+    afterAll(function () {
+        MainPage.clickUserMenuArrow();
+        MainPage.clickLogoutButton().end();
     });
-
 
 });

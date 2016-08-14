@@ -1,5 +1,20 @@
-{	"slotsButton": "a.CMSListMenuLink[href*='slots']",
-	 "bingoButton": "a.CMSListMenuLink[href*='bingo']",
-	"casinoButton": "a.CMSListMenuLink[href*='casino']",
-	"pokerButton": "a.CMSListMenuLink[href*='poker']"
+{
+  "startUrl": "https://www.gametwist.com/en/",
+  "usernameField": "input[name='login-nickname']",
+  "passwordField": "input#login-password",
+  "loginButton": "//button//span[contains(.,'LOG IN')]/..",
+  "searchField": "input[class*='game-search']",
+  "searchButton": "button[class*='game-search']",
+  "languageButtonArrow":"div[class*='select-language']:nth-of-type(2)>span",
+  "languageButtonGerman":"div[class*='select-language']:nth-of-type(2) li:nth-of-type(2)",
+
+  "languageGet":"meta[http-equiv='content-language']",
+  "slotsButton": "a.CMSListMenuLink[href*='slots']",
+  "bingoButton": "a.CMSListMenuLink[href*='bingo']",
+  "casinoButton": "a.CMSListMenuLink[href*='casino']",
+  "pokerButton": "a.CMSListMenuLink[href*='poker']",
+  "userMenuArrow": "span.my-gt-menu__link i",
+  "logoutButton": "button[class*='js-logout']",
+
+  "popup": "div#daily-bonus-popup"
 }
