@@ -90,7 +90,7 @@ var MainPage = Object.create(Page, {
     },
 
     clickLanguageArrow: {
-        value: function () {s
+        value: function () {
             Page.click.call(this, mainpageLocator.languageButtonArrow);
         }
     },
@@ -112,13 +112,13 @@ var MainPage = Object.create(Page, {
         value: function () {
             return browser.waitForExist(mainpageLocator.popup);
         }
-    },
+    }/*,
 
-    execute: {
-        value: function () {
-            browser.execute("$('div#daily-bonus-popup').remove()");
-        }
-    }
+       execute: {
+     value: function () {
+     browser.execute("$('div#daily-bonus-popup').remove()");
+     }
+     }*/
 });
 
 module.exports = MainPage

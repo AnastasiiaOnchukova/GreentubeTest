@@ -18,8 +18,9 @@ describe("Greentube", function () {
         MainPage.inputUsername(username);
         MainPage.inputPassword(password);
         MainPage.clickLogin();
-        var isPopupExists=MainPage.waitForExist();
-        if(existsPopup){MainPage.execute();}});
+        //var isPopupExists=MainPage.waitForExist();
+        //if(isPopupExists){MainPage.execute();}
+        });
 
    it('test navigation', function () {
         MainPage.clickSlotsButton();
